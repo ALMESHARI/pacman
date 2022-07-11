@@ -244,7 +244,6 @@ this.updateTrials()
   
   checkConflict() {
     if (this.remainPoints == 0) {
-      console.log('yoooooou win')
       // this.squares.classList.add('win-grid')
        for (const ghost of this.ghostlist) {
          ghost.ghostElement.style.display = 'none'
