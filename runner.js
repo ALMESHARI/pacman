@@ -11,10 +11,6 @@ container.appendChild(mainMenu)
 
 let game;
 
-
-
-
-
 window.onresize = function(event) {
   if (game != undefined && game != null) {
     game.pacman.updatePacman();
@@ -155,6 +151,7 @@ gridElement.addEventListener('touchend', function (event) {
 //play button
 mainMenu.children[0].addEventListener('click',(e)=>{
   fromMenuToGrid()
+  Game.gameWin.play();
   game = initializeGame()
 },false)
 
