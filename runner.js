@@ -110,7 +110,7 @@ function changeGhostsLocation() {
       prev[g] =  game.ghostlist[g].currentLocation
     game.ghostlist[g].changeLocation(moving[g][step[g]][0],moving[g][step[g]][1])
       step[g] += 1;
-        if (game.ghostlist[g].currentLocation.toString() == game.pacman.currentLocation.toString()&&game.mode=='escape') {
+        if (game.ghostlist[g].currentLocation.toString() == game.pacman.currentLocation.toString()&&game.mode=='escape'&&game.ghostlist[g].mode != 'eaten') {
           Game.eatGhostSound.play();
           game.ghostlist[g].changeMode('eaten')
           game.ghostlist[g].updateGhost()
