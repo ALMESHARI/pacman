@@ -221,6 +221,11 @@ export class GridBoard {
   
   //___________________________________________________________________________________________________________________________________
 export class Game {
+  static eatSound = new Audio('sounds/waka.wav');
+  static eatGhostSound = new Audio('sounds/eat_ghost.wav');
+  static gameOver = new Audio('sounds/gameOver.wav')
+  static gameWin = new Audio('sounds/gameWin.wav')
+  static powerSound = new Audio('sounds/power_dot.wav')
     constructor(gridBoard, ghostlist, pacman, score = 0,health=3,status= "stop") {
       this.gridBoard = gridBoard;
       this.ghostlist = ghostlist;
@@ -250,13 +255,17 @@ this.updateTrials()
       //check for catching pacman by ghosts
       if (this.pacman.currentLocation.toString() == this.ghostlist[index].currentLocation.toString() && this.mode == "normal") {
         this.health -= 1;
-        this.updateTrials() 
+        this.updateTrials()
+        if (this.remainPoints > 0) {
+          Game.gameOver.play();
+        }
         this.restartGame();
         return true;
       }
       //check for catching ghost by pacman in escape mode
       if (this.pacman.currentLocation.toString() == this.ghostlist[index].currentLocation.toString() && this.mode == "escape" && !(this.ghostlist[index].mode == 'eaten')) {
         this.ghostlist[index].changeMode("eaten");
+        Game.eatGhostSound.play();
         this.addScores(200);
       }
       //return the ghost to his state if it reach its initial location
@@ -285,11 +294,13 @@ this.updateTrials()
       //check for points
       if (updatedCell.classList.contains("point")) {
         this.addScores(1);
-        this.remainPoints -=1
+        this.remainPoints -= 1
+        Game.eatSound.play();
 
       }
       //check for the angry points 
       if (updatedCell.classList.contains("angry-point")) {
+        Game.powerSound.play();
         this.mode = 'escape'
         this.escapeSeconds = 10;
         this.ghostsChangeMode();
@@ -333,7 +344,7 @@ this.updateTrials()
         element.currentLocation = element.initialLocation;
         element.updateGhost()
       });
-    showMessage()
+    showMessage(this.health)
     }
   
     creatingBoardinHTML() {

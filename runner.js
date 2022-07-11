@@ -9,7 +9,6 @@ let informationEl = document.getElementsByClassName("information")[0]
 let mainMenu = createMainMenu()
 container.appendChild(mainMenu)
 
-var myDate = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
 let game;
 
 
@@ -152,10 +151,20 @@ gridElement.addEventListener('touchend', function (event) {
   handleGesture();
 }, false);
 
+//play button
 mainMenu.children[0].addEventListener('click',(e)=>{
   fromMenuToGrid()
   game = initializeGame()
 },false)
+
+//about button 
+mainMenu.children[1].addEventListener('click',(e)=>{
+  location.href ='https://github.com/ALMESHARI'
+},false)
+
+
+//https://github.com/ALMESHARI
+
 
 //determine which action do from touch gesture 
 function handleGesture() {
@@ -186,7 +195,7 @@ function endGame(game) {
   setTimeout(() => {
     fromGridToMenu()
 
-  }, 2000);
+  }, 3000);
    
 
 }
@@ -199,15 +208,22 @@ export function showMessage(m=''){
     } else {
       messagePanel.innerHTML = 'YOU WIN'
       messagePanel.style.color = 'white'
+      Game.gameWin.play();
     }
        messagePanel.style.display = 'flex'
     messagePanel.classList.add('opacity-reverse')
   setTimeout(() => {
     messagePanel.style.display = 'none'
   },3000);
-  }else{
+  } else {
       messagePanel.innerHTML = 'Press arrows or swipe to start'
-    messagePanel.style.color = 'white'
+     if (m == 2) {
+      messagePanel.innerHTML = 'Try Again'
+    }
+      if (m== 1) {
+      messagePanel.innerHTML = 'Last Chance!'
+    }
+      messagePanel.style.color = 'white'
        messagePanel.style.display = 'flex'
     messagePanel.classList.add('opacity-reverse')
   }
