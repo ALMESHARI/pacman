@@ -221,11 +221,11 @@ export class GridBoard {
   
   //___________________________________________________________________________________________________________________________________
 export class Game {
-  static eatSound = new Audio('sounds/waka.wav');
-  static eatGhostSound = new Audio('sounds/eat_ghost.wav');
-  static gameOver = new Audio('sounds/gameOver.wav')
-  static gameWin = new Audio('sounds/gameWin.wav')
-  static powerSound = new Audio('sounds/power_dot.wav')
+  static eatSound = new Audio('waka.wav');
+  static eatGhostSound = new Audio('eat_ghost.wav');
+  static gameOver = new Audio('gameOver.wav')
+  static gameWin = new Audio('gameWin.wav')
+  static powerSound = new Audio('power_dot.wav')
     constructor(gridBoard, ghostlist, pacman, score = 0,health=3,status= "stop") {
       this.gridBoard = gridBoard;
       this.ghostlist = ghostlist;
