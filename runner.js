@@ -122,15 +122,15 @@ document.addEventListener('keydown', (e) => {
     }
   }
   e = e || window.event;
-  if (e.keyCode === 38) {
-    inputDirection = "up";
-  } else if (e.keyCode === 40) {
-    inputDirection= "down";
-  } else if (e.keyCode === 37) {
-    inputDirection="left";
-  } else if (e.keyCode === 39) {
-    inputDirection = "right";
-  }
+if (e.keyCode === 38 || e.keyCode === 87) {  // Up arrow or W
+  inputDirection = "up";
+} else if (e.keyCode === 40 || e.keyCode === 83) {  // Down arrow or S
+  inputDirection = "down";
+} else if (e.keyCode === 37 || e.keyCode === 65) {  // Left arrow or A
+  inputDirection = "left";
+} else if (e.keyCode === 39 || e.keyCode === 68) {  // Right arrow or D
+  inputDirection = "right";
+}
 })
 //touch swipe listener
 //start touch listener
@@ -214,7 +214,7 @@ export function showMessage(m=''){
     messagePanel.style.display = 'none'
   },3000);
   } else {
-      messagePanel.innerHTML = 'Press arrows or swipe to start'
+      messagePanel.innerHTML = 'Press A W S D or arrows or swipe to start'
      if (m == 2) {
       messagePanel.innerHTML = 'Try Again'
     }
@@ -327,4 +327,5 @@ function fromGridToMenu(){
   mainMenu.style.display = "flex"
   gridElement.innerHTML = ""
   gridElement.append(messagePanel)
+
 }
